@@ -72,12 +72,8 @@ public class ControladoraPersistencia {
     /*COMPRA*/
     public void insertCompra(Compra compra){
         
-        try {
-            compraJpa.create(compra);
-            System.out.println("Compra registrada");
-        } catch (Exception ex) {
-            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        compraJpa.create(compra);
+        JOptionPane.showMessageDialog(null, "Se ha registrado la compra", "¡Buenas noticias!", JOptionPane.INFORMATION_MESSAGE);
     }
     
-    }
+}

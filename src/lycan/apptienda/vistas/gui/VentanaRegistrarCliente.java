@@ -47,6 +47,12 @@ public class VentanaRegistrarCliente extends javax.swing.JDialog {
             componente.setEnabled(true);
         }
     }
+    
+    public void validarCorreo(String correo)throws Exception{
+        if (!correo.contains("@") || !correo.endsWith(".com")) {
+            throw new Exception("El correo ingresado no es valido");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -449,6 +455,7 @@ public class VentanaRegistrarCliente extends javax.swing.JDialog {
                 if(esOblogatorioBarrio && txtBarrio.getText().equals("")) throw new Exception ("El campo Barrio es obligatorio");
                 if(esOblogatorioCalle && txtCalle.getText().equals("")) throw new Exception ("El campo Calle es obligatorio");
                 if(esOblogatorioDireccion && txtDireccion.getText().equals("")) throw new Exception ("El campo Dirección es obligatorio");
+                if (!correo.isEmpty()) validarCorreo(correo);
                 
                 cliente = new Cliente (telefono, correo, num_id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido);
                 domi = new Domicilio(barrio, calle, direccion);

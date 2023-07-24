@@ -23,27 +23,26 @@ public class Compra implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP) //Para mapear la fecha y hora
     private Date fecha_compra;
     
     @Column(name = "VALOR_COMPRA")
     private int valor_compra;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.MERGE)//Esto para que se actualice el total de la deuda en la cuenta
     @JoinColumn(name = "ID_CUENTA")
     private Cuenta cuenta;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "CLIENTE_NUM_IDENTIFICACION")
     private Cliente cliente;
 
     public Compra() {
     }
 
-    public Compra(Date fecha_compra, int valor_compra, Cuenta cuenta, Cliente cliente) {
+    public Compra(Date fecha_compra, int valor_compra, Cliente cliente) {
         this.fecha_compra = fecha_compra;
         this.valor_compra = valor_compra;
-        this.cuenta = cuenta;
         this.cliente = cliente;
     }
 
